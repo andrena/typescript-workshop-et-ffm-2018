@@ -1,7 +1,7 @@
 import {PolygonStore} from "./PolygonStore";
 import {GeoPolygon} from "../model";
 
-describe.skip("PolygonStore", () => {
+describe("PolygonStore", () => {
 
     let store: PolygonStore;
     let feature1: ol.Feature, feature2: ol.Feature;

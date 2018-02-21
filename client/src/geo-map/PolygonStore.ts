@@ -8,18 +8,31 @@ export class PolygonStore {
 
     savePolygonFeature(polygonFeature: ol.Feature): string {
         const _id = (this.counter++).toString(16).padStart(8);
-        // todo hänge das polygonFeature und die ID an die polygonIdFeatureList an
+        this.polygonIdFeatureList.push({_id, polygonFeature});
         return _id;
     }
 
     returnAndRemoveAllBut(idsToKeep: string[]): ol.Feature[] {
-        // todo entferne alle Einträge in der polygonIdFeatureList, deren IDs nicht in idsToKeep sind
-        // gebe alle entfernten polygonFeatures als neue Liste zurück
-        return [];
+        const polygonFeaturesToRemove: ol.Feature[] = [];
+        this.polygonIdFeatureList = this.polygonIdFeatureList.filter(element => {
+            if(idsToKeep.indexOf(element._id) === -1) {
+                polygonFeaturesToRemove.push(element.polygonFeature);
+                return false;
+            } else {
+                return true;
+            }
+        });
+        return polygonFeaturesToRemove;
     }
 
     determineMissingPolygons(polygons: GeoPolygon[]): GeoPolygon[] {
-        // todo gebe alle polygons zurück, deren IDs nicht in der polygonIdFeatureList vorkommen
-        return [];
+        return polygons.filter(polygon => {
+            for(const entry of this.polygonIdFeatureList) {
+                if(entry._id === polygon._id) {
+                    return false;
+                }
+            }
+            return true;
+        });
     }
 }
