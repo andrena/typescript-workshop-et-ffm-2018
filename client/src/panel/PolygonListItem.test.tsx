@@ -1,11 +1,12 @@
 import * as React from "react";
 import {shallow} from "enzyme";
+import {GeoPolygonWithStatus} from "../model";
 import {PolygonListItem} from "./PolygonListItem";
 
-describe.skip("PolygonListItem", () => {
+describe("PolygonListItem", () => {
 
-    let polygonActive: any; // todo benutze deinen eigenen Typ
-    let polygonInactive: any;
+    let polygonActive: GeoPolygonWithStatus;
+    let polygonInactive: GeoPolygonWithStatus;
     let onDelete: jest.Mock, onRename: jest.Mock;
     beforeEach(() => {
         polygonActive = {

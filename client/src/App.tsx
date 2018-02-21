@@ -1,11 +1,11 @@
 import * as React from "react";
 import {Map} from "./Map";
 import {Panel} from "./panel/Panel";
-import {GeoCoordinates, GeoPolygon} from "./model";
+import {GeoCoordinates, GeoPolygon, GeoPolygonWithStatus} from "./model";
 import {addPosition, PositionProps} from "./AddPositionEnhancer";
 import {isWithinPolygon} from "./ray-casting/rayCasting";
-import * as api from "./api";
 import {GeolocationServiceLinear} from "./GeolocationServiceLinear";
+import * as api from "./api";
 
 const geolocationService = new GeolocationServiceLinear();
 
@@ -83,11 +83,11 @@ class AppComponent extends React.Component<PositionProps, State> {
     }
 
     addPolygonStatus(polygons: GeoPolygon[]) {
-        // todo benutze die Funktion "isWithinPolygon" aus "rayCasting.ts"
-        // um zu bestimmen, ob sich die aktuelle Position (this.props.currentPosition),
-        // innerhalb des Polygons befindet
-        // gebe Eine Liste deines neuen Types zurück
-        return polygons;
+        const casted = polygons as GeoPolygonWithStatus[];
+        for (const polygon of casted) {
+            polygon.active = isWithinPolygon(this.props.currentPosition, polygon.coordinates);
+        }
+        return casted;
     }
 
     setCurrentPosition(coordinates: GeoCoordinates) {

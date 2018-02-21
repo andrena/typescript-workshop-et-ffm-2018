@@ -7,3 +7,6 @@ export interface GeoPolygon {
     name: string;
     coordinates: GeoCoordinates[];
 }
+export interface GeoPolygonWithStatus extends GeoPolygon {
+    active: boolean;
+}

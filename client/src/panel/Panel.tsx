@@ -1,9 +1,9 @@
 import * as React from "react";
 import {PolygonListItem} from "./PolygonListItem";
-import {GeoPolygon} from "../model";
+import {GeoPolygon, GeoPolygonWithStatus} from "../model";
 
 interface Props {
-    polygons: GeoPolygon[];
+    polygons: GeoPolygonWithStatus[];
     drawMode: boolean;
     onDrawModeChanged: () => void;
     onPolygonDelete: (polygon: GeoPolygon) => void;

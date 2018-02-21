@@ -1,9 +1,9 @@
 import * as React from "react";
 import {SyntheticEvent} from "react";
-import {GeoPolygon} from "../model";
+import {GeoPolygonWithStatus} from "../model";
 
 interface Props {
-    polygon: GeoPolygon;
+    polygon: GeoPolygonWithStatus;
     onDelete: () => void;
     onRename: (name: string) => void;
 }
@@ -41,9 +41,11 @@ export class PolygonListItem extends React.Component<Props, State> {
     renderBadge() {
         const marginRight = {marginRight: "12px"};
         let className = "";
-        // todo benutze this.props.polygon um className abhängig vom Status zu setzen
-        // aktuelle Position innerhalb Polygon: class "badge badge-success"
-        // aktuelle Position außerhalb Polygon: class "badge badge-secondary"
+        if (this.props.polygon.active) {
+            className = "badge badge-success";
+        } else {
+            className = "badge badge-secondary";
+        }
         return <span className={className} style={marginRight}>on</span>;
     }
 
