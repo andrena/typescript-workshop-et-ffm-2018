@@ -19,19 +19,51 @@ const defaultSettings: GeolocationServiceFakeLinearSettings = {
 /** Ein GeolocationService, der Punkte auf einer Linie liefert ohne Bezug zur echten Position des Geräts. */
 export class GeolocationServiceLinear implements GeolocationService {
 
+    private listeners: PositionListener[] = [];
+    private intervalId?: number;
+
     constructor(private currentPosition: GeoCoordinates = defaultPosition,
                 private settings: GeolocationServiceFakeLinearSettings = defaultSettings) {
     }
 
-    // erlaubt es, eine aktuelle Position direkt zu setzen, z.B. beim Doppelklick auf die Karte
     setCurrentPosition(position: GeoCoordinates) {
         this.currentPosition = position;
     }
 
     subscribe(listener: PositionListener) {
+        if (this.listeners.length === 0) {
+            this.startTimer();
+        }
+
+        this.listeners.push(listener);
     }
 
     unsubscribe(listener: PositionListener) {
+        this.listeners = this.listeners.filter(li => li !== listener);
+
+        if (this.listeners.length === 0) {
+            this.stopTimer();
+        }
+    }
+
+    private startTimer() {
+        this.intervalId = window.setInterval(() => this.updatePosition(), this.settings.updateRateMs);
+    }
+
+    private updatePosition() {
+        let longitude = this.currentPosition.longitude + this.settings.speed;
+        let latitude = this.currentPosition.latitude + this.settings.speed;
+        this.currentPosition = {longitude, latitude};
+        this.listeners.forEach(listener => listener(this.currentPosition));
+    }
+
+    private stopTimer() {
+        if (typeof this.intervalId !== "number") {
+            throw new Error("Watch already cleared");
+        }
+
+        window.clearInterval(this.intervalId);
+        this.intervalId = undefined;
     }
 
 }

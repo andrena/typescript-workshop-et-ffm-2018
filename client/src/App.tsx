@@ -5,9 +5,9 @@ import {GeoCoordinates, GeoPolygon} from "./model";
 import {addPosition, PositionProps} from "./AddPositionEnhancer";
 import {isWithinPolygon} from "./ray-casting/rayCasting";
 import * as api from "./api";
-import {GeolocationServiceHtml5} from "./GeolocationServiceHtml5";
+import {GeolocationServiceLinear} from "./GeolocationServiceLinear";
 
-const geolocationService = new GeolocationServiceHtml5();
+const geolocationService = new GeolocationServiceLinear();
 
 interface State {
     drawMode: boolean;

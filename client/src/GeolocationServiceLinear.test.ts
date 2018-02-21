@@ -1,6 +1,6 @@
 import {GeolocationServiceLinear} from "./GeolocationServiceLinear";
 
-describe.skip("GeolocationServiceLinear", () => {
+describe("GeolocationServiceLinear", () => {
 
     beforeEach(() => jest.useFakeTimers());
 

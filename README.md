@@ -32,5 +32,5 @@ Die "on"-Badge im Panel soll grün werden, wenn sich die aktuelle Position inner
 Der entsprechende *Ray-Tracing*-Algorithmus ist bereits implementiert und soll jetzt eingebunden werden.
 - Schreibe einen neuen *interface*-Typ in `model.ts`, der das `GeoPolygon` um ein boolean Feld `active` erweitert.
 - In App.tsx `addPolygonStatus`: Verwende die Funktion `isWithinPolygon` und den neuen Typ, um dieses Feld für alle Polygone zu setzen.
-- Passe die Typ-Annotationen überall an wo es nötig ist (auch in `PolygonListItem.test.tsx`).
+- Passe die Typ-Annotationen überall an wo es nötig ist.
 - Implementiere die Methode `renderBadge` in `PolygonListItem.tsx`, damit alle Tests grün sind und das Feature funktioniert.
