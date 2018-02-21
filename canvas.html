@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang=en>
+
+<head>
+    <meta charset=utf-8>
+    <title>CanvasPaint</title>
+    <style>
+        body {
+            width: 800px;
+            margin: 0 auto;
+            font-family: sans-serif;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: inline-block;
+        }
+
+        canvas {
+            box-shadow: 0 0 20px black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>CanvasPaint</h1>
+
+    <h2>Tools</h2>
+    <ul>
+        <li><button id="toolNone">None</button></li>
+        <li><button id="toolBlackPen">Black Pen</button></li>
+    </ul>
+
+    <h2>Canvas</h2>
+    <canvas width="800" height="600"></canvas>
+
+    <script src="canvas.js"></script>
+</body>
+
+</html>

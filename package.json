@@ -1,0 +1,15 @@
+{
+  "name": "canvas-paint",
+  "version": "1.0.0",
+  "description": "ET FFM 2018 TypeScript für Starter - Übung 1",
+  "scripts": {
+    "postinstall": "npm run build",
+    "build": "tsc --pretty",
+    "watch": "tsc --watch --pretty"
+  },
+  "author": "andrena objects ag",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "2.7.2"
+  }
+}
